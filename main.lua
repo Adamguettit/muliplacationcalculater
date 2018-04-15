@@ -1,8 +1,10 @@
 ------------------------------------------------------------------------------------------
+
 -- created on : april 5
 -- created by : Adam
 -- main.lua
--- multiplies numbers
+
+-- this code multiplies numbers
 ----------------------------------------------------------------------------------------
 local enterButton = display.newImageRect( "./assets/sprites/enterButton.png", 406, 157 )
 enterButton.x = display.contentCenterX
@@ -17,9 +19,52 @@ local secondvariable
 local secondvariableTextField = native.newTextField( display.contentCenterX + 400, display.contentCenterY , 450, 150 )
 secondvariableTextField.id = "secondvariable TextField"
 
+local firstvariabletonumber
+
+local secondvariabletonumber
+
 display.newText("*", 1024, 800, native.systemFont, 300)
 
---local function enterButtonTouch( event )
---firstvariabletonumber = tonumber( firstvariable )
---secondvariabletonumber = tonumber( secondvariable )
-	
+local function enterButtonTouch( event )
+
+	answer = 0 
+	firstvariable = firstvariableTextField.text 
+	secondvariable = secondvariableTextField.text 
+    firstvariabletonumber = tonumber( firstvariable )    
+    secondvariabletonumber = tonumber( secondvariable )
+
+    if secondvariabletonumber < 0 and firstvariabletonumber < 0 then
+
+			for i = 1,firstvariabletonumber * -1 do 
+		    answer = answer + secondvariabletonumber
+		    end
+		answer = answer * -1
+
+		elseif firstvariabletonumber < 0 then
+			for i = 1, secondvariabletonumber do
+			answer = answer + firstvariabletonumber
+		end
+		
+		elseif secondvariabletonumber < 0 then 
+
+			for i = 1,firstvariabletonumber do 
+			answer = answer + secondvariabletonumber
+		end
+		
+		elseif firstvariabletonumber > 0 and secondvariabletonumber > 0 then
+
+	    	for i = 1,firstvariabletonumber do 
+		    answer = answer + secondvariabletonumber 
+		end
+		
+		elseif firstvariabletonumber == 0 or secondvariabletonumber == 0 then 
+			display.newText("0", 1024, 1200, native.systemFont, 100)
+		else
+			display.newText("please enter valid number", 1024, 1200, native.systemFont, 100)
+	end
+
+	display.newText(answer, 1024, 1200, native.systemFont, 100)
+end
+
+enterButton:addEventListener( "touch", enterButtonTouch )
+
