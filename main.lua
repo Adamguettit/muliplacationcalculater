@@ -66,5 +66,6 @@ local function enterButtonTouch( event )
 	display.newText(answer, 1024, 1200, native.systemFont, 100)
 end
 
+
 enterButton:addEventListener( "touch", enterButtonTouch )
 
